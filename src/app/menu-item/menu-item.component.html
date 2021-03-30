@@ -1,0 +1,86 @@
+<div class="col-md-12">
+  <form (ngSubmit)="onSubmit()" #f="ngForm">
+    <div class="row">
+      <div class="col">
+        <label for="menu-name">Menu Special Name</label>
+        <input
+          class="form-control"
+          type="text"
+          name="menuName"
+          id="menu-name"
+          ngModel
+        />
+      </div>
+      <div class="col">
+        <label for="menu-menus">Menu</label>
+        <select name="menuMenus" id="menu-menus" class="form-control" ngModel>
+          <option value="menu 1">Menu 1</option>
+          <option value="menu 2">Menu 2</option>
+          <option value="menu 3">Menu 3</option>
+          <option value="menu 4">Menu 3</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <label for="start-date">Start Date</label>
+        <input
+          type="date"
+          name="startDate"
+          id="start-date"
+          class="form-control"
+          ngModel
+        />
+      </div>
+      <div class="col">
+        <label for="end-date">End Date</label>
+        <input
+          type="date"
+          name="endDate"
+          id="end-date"
+          class="form-control"
+          ngModel
+        />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <label for="start-time">Start Time</label>
+        <input
+          type="time"
+          name="startTime"
+          id="start-time"
+          class="form-control"
+          ngModel
+        />
+      </div>
+      <div class="col">
+        <label for="end-time">End Time</label>
+        <input
+          type="time"
+          name="endTime"
+          id="end-time"
+          class="form-control"
+          ngModel
+        />
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col"><h1>week days here</h1></div>
+    </div>
+
+    <div class="row">
+      <div class="col"></div>
+      <div class="col">
+        <button class="btn btn-danger rounded-pill" type="submit">
+          Create
+        </button>
+        <button class="btn btn-primary rounded-pill" type="reset">
+          Cancle
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

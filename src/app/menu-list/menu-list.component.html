@@ -1,0 +1,92 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">Header</div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <!--  -->
+
+      <div class="example-header">
+        <mat-form-field>
+          <input
+            matInput
+            (keyup)="applyFilter($event.target.value)"
+            placeholder="Filter"
+          />
+        </mat-form-field>
+      </div>
+
+      <div class="example-container mat-elevation-z8">
+        <mat-table [dataSource]="dataSource" matSort>
+          <!-- menuName Column -->
+          <ng-container matColumnDef="menuName">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>
+              Special Mennu Name
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{ row.menuName }} </mat-cell>
+          </ng-container>
+
+          <!-- Start Date Column -->
+          <ng-container matColumnDef="startDate">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>
+              Start Date
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row">
+              {{ row.startDate }}{{ row.startTime }}</mat-cell
+            >
+          </ng-container>
+
+          <!-- start Time -->
+          <ng-container matColumnDef="startTime">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row"> </mat-cell>
+          </ng-container>
+
+          <!-- endDate Column -->
+          <ng-container matColumnDef="endDate">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>
+              End Date
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{ row.endDate }} </mat-cell>
+          </ng-container>
+
+          <!-- frequency Column -->
+          <ng-container matColumnDef="frequency">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>
+              Frequency
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row">
+              {{ row.frequency }}
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="createdBy">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>
+              Created By
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row">
+              {{ row.createdBy }}
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="createdOn">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>
+              Created On
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row">
+              {{ row.createdOn }}
+            </mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns"> </mat-row>
+        </mat-table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+      </div>
+
+      <!--  -->
+    </div>
+  </div>
+</div>
