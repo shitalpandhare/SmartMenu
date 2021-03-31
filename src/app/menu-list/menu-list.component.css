@@ -1,0 +1,11 @@
+#trash {
+  margin-left: 10px;
+  color: red;
+  cursor: pointer;
+}
+
+#edit {
+  margin-left: 10px;
+  color: skyblue;
+  cursor: pointer;
+}

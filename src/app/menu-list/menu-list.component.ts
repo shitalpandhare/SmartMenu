@@ -5,20 +5,29 @@ import { MenuData } from '../shared/menu-data.model';
 import { MenuService } from '../shared/menu.service';
 import { MatSort } from '@angular/material/sort';
 
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { faEdit } from '@fortawesome/free-solid-svg-icons';
+import { faFilePdf } from '@fortawesome/free-solid-svg-icons';
+import { faFileExcel } from '@fortawesome/free-solid-svg-icons';
+
 @Component({
   selector: 'app-menu-list',
   templateUrl: './menu-list.component.html',
   styleUrls: ['./menu-list.component.css'],
 })
 export class MenuListComponent implements OnInit {
+  faTrash = faTrashAlt;
+  faEdit = faEdit;
+  faFilePdf = faFilePdf;
+  faFileExcel = faFileExcel;
   displayedColumns = [
     'menuName',
-    'startTime',
     'startDate',
     'endDate',
     'frequency',
     'createdBy',
     'createdOn',
+    'Action',
   ];
   dataSource: MatTableDataSource<MenuData>;
 
@@ -29,8 +38,10 @@ export class MenuListComponent implements OnInit {
   constructor(private menuService: MenuService) {}
 
   ngOnInit(): void {
-    this.data = this.menuService.getMenuItems();
-    this.dataSource = new MatTableDataSource(this.data);
+    this.menuService.updatedMenuItems.subscribe((res) => {
+      this.data = res;
+      this.dataSource = new MatTableDataSource(this.data);
+    });
   }
 
   ngAfterViewInit() {
@@ -42,5 +53,10 @@ export class MenuListComponent implements OnInit {
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
     this.dataSource.filter = filterValue;
+  }
+
+  onDeleteMenu(menuItemId: number) {
+    console.log(menuItemId);
+    this.menuService.deleteMenuItemById(menuItemId);
   }
 }

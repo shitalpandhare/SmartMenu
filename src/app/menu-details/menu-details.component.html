@@ -1,0 +1,98 @@
+<button
+  type="button"
+  class="btn btn-primary"
+  data-toggle="modal"
+  data-target="#exampleModal"
+  #exampleModal
+  [hidden]="true"
+>
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-full" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span
+          ><p class="back-button" (click)="onBackButton()">
+            <fa-icon [icon]="faAngleLeft"></fa-icon> Back to Special Menu
+          </p></span
+        >
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          #closebutton
+          routerLink="/smartmenu/menu-list"
+        >
+          &times;
+        </button>
+      </div>
+
+      <!--  -->
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12">
+            <div style="position: absolute; right: 20px; top: 10px">
+              <fa-icon id="trash" [icon]="faTrashAlt"></fa-icon>
+              <fa-icon id="edit" [icon]="faEdit"></fa-icon>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div style="text-align: center">
+              <h3>Menu item</h3>
+              <h5>for</h5>
+              <h4>Menu 1</h4>
+            </div>
+          </div>
+        </div>
+        <div
+          class="row"
+          style="height: 20px; background-color: lavender; color: grey"
+        >
+          <div class="col-md-6">
+            <div>
+              <p><fa-icon [icon]="faClock"></fa-icon> Menu Schedule</p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div>
+              <p><fa-icon [icon]="faClock"></fa-icon> Weekdays</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <div>
+              <h1>Menu Schedule</h1>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div>
+              <h1>Weekdays</h1>
+            </div>
+          </div>
+        </div>
+
+        <!--  -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            Close
+          </button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

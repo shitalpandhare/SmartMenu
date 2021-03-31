@@ -14,11 +14,13 @@ export class MenuItemComponent implements OnInit {
   id: number;
   constructor(private menuService: MenuService) {}
 
-  ngOnInit(): void {
-    this.id = this.menuService.menuItems.length + 1;
-  }
+  ngOnInit(): void {}
 
   onSubmit() {
+    let index = this.menuService.menuItems.length - 1;
+    console.log(index);
+    this.id = this.menuService.menuItems[index].menuItemId + 1;
+
     let obj: MenuData = {
       menuItemId: this.id,
       menuName: this.form.value.menuName,

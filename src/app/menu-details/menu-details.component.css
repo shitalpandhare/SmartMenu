@@ -1,0 +1,26 @@
+.back-button {
+  color: rgb(219, 68, 68);
+  cursor: pointer;
+}
+
+#trash {
+  margin-left: 10px;
+  color: red;
+  cursor: pointer;
+}
+
+#edit {
+  margin-left: 20px;
+  color: skyblue;
+  cursor: pointer;
+}
+
+.modal-full {
+  min-width: 80%;
+  margin: 0;
+  margin-left: 10%;
+}
+
+.modal-full .modal-content {
+  min-height: 90vh;
+}

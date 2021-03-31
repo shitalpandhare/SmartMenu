@@ -12,9 +12,11 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { MenuDetailsComponent } from './menu-details/menu-details.component';
 
 @NgModule({
-  declarations: [AppComponent, MenuListComponent, MenuItemComponent],
+  declarations: [AppComponent, MenuListComponent, MenuItemComponent, MenuDetailsComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -24,6 +26,7 @@ import { MatInputModule } from '@angular/material/input';
     MatSortModule,
     MatTableModule,
     MatInputModule,
+    FontAwesomeModule,
   ],
   exports: [MatPaginatorModule, MatSortModule, MatTableModule, MatInputModule],
   providers: [DatePipe],
