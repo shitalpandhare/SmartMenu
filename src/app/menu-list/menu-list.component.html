@@ -97,7 +97,12 @@
           <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
           <mat-cell *matCellDef="let row">
             <span>
-              <fa-icon id="edit" [icon]="faEdit"></fa-icon>
+              <fa-icon
+                id="edit"
+                [icon]="faEdit"
+                [routerLink]="['/smartmenu/menu-item']"
+                [queryParams]="{ id: row.menuItemId }"
+              ></fa-icon>
               <fa-icon
                 id="trash"
                 [icon]="faTrash"

@@ -47,4 +47,22 @@ export class MenuService implements OnInit {
       }
     });
   }
+
+  getMenuItemById(id: number) {
+    let menuItem: MenuData;
+    this.menuItems.forEach((menu: MenuData) => {
+      if (menu.menuItemId == id) {
+        menuItem = menu;
+      }
+    });
+    return menuItem;
+  }
+
+  updateMenu(id: number, obj: MenuData) {
+    this.menuItems.map((i, j) => {
+      if (i.menuItemId == id) {
+        this.menuItems[j] = obj;
+      }
+    });
+  }
 }

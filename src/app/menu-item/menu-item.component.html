@@ -8,12 +8,22 @@
           type="text"
           name="menuName"
           id="menu-name"
-          ngModel
+          placeholder="Menu Special Name"
+          [(ngModel)]="obj.menuName"
+          required
         />
       </div>
+
       <div class="col">
         <label for="menu-menus">Menu</label>
-        <select name="menuMenus" id="menu-menus" class="form-control" ngModel>
+        <select
+          name="menuMenus"
+          id="menu-menus"
+          class="form-control"
+          [(ngModel)]="obj.menuMenus"
+          required
+        >
+          <option value="" disabled selected>Menu</option>
           <option value="menu 1">Menu 1</option>
           <option value="menu 2">Menu 2</option>
           <option value="menu 3">Menu 3</option>
@@ -26,57 +36,87 @@
       <div class="col">
         <label for="start-date">Start Date</label>
         <input
-          type="date"
+          type="text"
+          onfocus="(this.type='date')"
           name="startDate"
           id="start-date"
           class="form-control"
-          ngModel
+          placeholder="Start Date"
+          [(ngModel)]="obj.startDate"
+          required
+          min="2021-04-01"
         />
       </div>
       <div class="col">
         <label for="end-date">End Date</label>
         <input
-          type="date"
+          type="text"
           name="endDate"
           id="end-date"
           class="form-control"
-          ngModel
+          (blur)="dateValidation()"
+          onfocus="(this.type='date')"
+          placeholder="End Date"
+          [(ngModel)]="obj.endDate"
+          required
+          min="2021-04-01"
         />
+        <div *ngIf="error.isError" class="alert alert-danger">
+          {{ error.errorMessage }}
+        </div>
       </div>
     </div>
     <div class="row">
       <div class="col">
         <label for="start-time">Start Time</label>
         <input
-          type="time"
+          type="text"
+          onfocus="(this.type='time')"
           name="startTime"
           id="start-time"
           class="form-control"
-          ngModel
+          placeholder="Start Time"
+          [(ngModel)]="obj.startTime"
+          required
         />
       </div>
       <div class="col">
         <label for="end-time">End Time</label>
         <input
-          type="time"
+          type="text"
+          onfocus="(this.type='time')"
           name="endTime"
           id="end-time"
           class="form-control"
-          ngModel
+          placeholder="End Time"
+          [(ngModel)]="obj.endTime"
+          required
         />
       </div>
     </div>
 
     <div class="row">
-      <div class="col"><h1>week days here</h1></div>
+      <div class="col">
+        <button type="button" class="btn btn-light rounded-pill">
+          EveryDay
+        </button>
+        <button type="button" class="btn btn-light rounded-pill">Mon</button>
+        <button type="button" class="btn btn-light rounded-pill">Tue</button>
+        <button type="button" class="btn btn-light rounded-pill">Wed</button>
+        <button type="button" class="btn btn-light rounded-pill">Thu</button>
+        <button type="button" class="btn btn-light rounded-pill">Fri</button>
+        <button type="button" class="btn btn-light rounded-pill">Sat</button>
+        <button type="button" class="btn btn-light rounded-pill">Sun</button>
+      </div>
     </div>
 
     <div class="row">
       <div class="col"></div>
       <div class="col">
         <button class="btn btn-danger rounded-pill" type="submit">
-          Create
+          {{ isUpdateMode ? "Update" : "Create" }}
         </button>
+
         <button class="btn btn-primary rounded-pill" type="reset">
           Cancle
         </button>
