@@ -16,6 +16,7 @@ const routes: Routes = [
       },
     ],
   },
+  { path: '', redirectTo: 'smartmenu/menu-item', pathMatch: 'full' },
 ];
 
 @NgModule({

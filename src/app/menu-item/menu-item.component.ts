@@ -20,7 +20,7 @@ export class MenuItemComponent implements OnInit {
     endDate: null,
     startTime: null,
     endTime: null,
-    frequency: 'week days',
+    frequency: '',
     createdBy: 'Shital',
     createdOn: null,
   };
@@ -28,10 +28,17 @@ export class MenuItemComponent implements OnInit {
   isUpdateMode: boolean = false;
   isValidForm: boolean = false;
 
-  days = [false, false, false, false, false, false, false, false];
-
   weekdays = [];
-  planet = new Map<string, boolean>();
+  dys = new Map<string, boolean>([
+    ['Mon', false],
+    ['Tue', false],
+    ['Wed', false],
+    ['Thu', false],
+    ['Fri', false],
+    ['Sat', false],
+    ['EveryDay', false],
+  ]);
+
   constructor(
     private menuService: MenuService,
     private route: ActivatedRoute,
@@ -43,29 +50,31 @@ export class MenuItemComponent implements OnInit {
       if (+params.get('id')) {
         this.id = +params.get('id');
         this.obj = this.menuService.getMenuItemById(this.id);
+
+        // for update frq buttons
+        let frq = this.obj.frequency.split(',');
+        for (let f of frq) {
+          this.dys.set(f, true);
+        }
         this.isUpdateMode = true;
+        this.isValidForm = true;
       }
     });
-
-    this.planet.set('Sun', false);
-    this.planet.set('Mon', true);
-
-    console.log(this.planet.get('Sun'));
-    console.log(this.planet);
   }
 
   onSubmit() {
-    this.isUpdateMode ? (this.isValidForm = true) : (this.isValidForm = false);
-    console.log(this.form.valid, this.isValidForm);
     if (!this.form.valid || !this.isValidForm) {
-      console.log('in val');
       return;
     }
-    console.log(this.form.value);
 
     if (!this.isUpdateMode) {
-      let index = this.menuService.menuItems.length - 1;
-      this.id = this.menuService.menuItems[index].menuItemId + 1;
+      if (this.menuService.menuItems.length >= 1) {
+        let index = this.menuService.menuItems.length - 1;
+        this.id = this.menuService.menuItems[index].menuItemId + 1;
+      } else {
+        this.id = 0;
+      }
+
       this.obj.menuItemId = this.id;
       this.obj.createdOn = new Date();
       this.menuService.createMenu(this.obj);
@@ -90,7 +99,8 @@ export class MenuItemComponent implements OnInit {
         isError: true,
         errorMessage: 'End Date cant before start date',
       };
-      console.log(this.error.errorMessage);
+
+      this.dys.clear();
     } else {
       const oneDay = 24 * 60 * 60 * 1000;
       const firstDate = new Date(this.form.controls['startDate'].value);
@@ -101,25 +111,26 @@ export class MenuItemComponent implements OnInit {
 
       if (diffDays >= 6) {
         this.weekdays = [];
-        this.days = [];
+        this.dys.clear();
         this.obj.frequency = 'EveryDay';
-        this.days[7] = true;
+        this.dys.set('EveryDay', true);
       } else {
         this.weekdays = [];
-        this.days = [];
+        this.dys.clear();
+
         var from = new Date(this.form.controls['startDate'].value);
         var to = new Date(this.form.controls['endDate'].value);
         var DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-
         var d = from;
+
         while (d <= to) {
-          this.weekdays.push(DAYS[d.getDay()]);
-          this.days[d.getDay()] = true;
+          this.dys.set(DAYS[d.getDay()], true);
           d = new Date(d.getTime() + 24 * 60 * 60 * 1000);
         }
-
+        for (let key of this.dys.keys()) {
+          this.weekdays.push(key);
+        }
         this.obj.frequency = this.weekdays.toString();
-        console.log(this.weekdays);
       }
       this.isValidForm = true;
     }

@@ -10,6 +10,8 @@
           id="menu-name"
           placeholder="Menu Special Name"
           [(ngModel)]="obj.menuName"
+          #menuName="ngModel"
+          [ngClass]="{ 'is-invalid': f.submitted && menuName.invalid }"
           required
         />
       </div>
@@ -21,6 +23,8 @@
           id="menu-menus"
           class="form-control"
           [(ngModel)]="obj.menuMenus"
+          #menuMenus="ngModel"
+          [ngClass]="{ 'is-invalid': f.submitted && menuMenus.invalid }"
           required
         >
           <option value="" disabled selected>Menu</option>
@@ -46,6 +50,7 @@
           required
           min="2021-04-01"
           #startdate="ngModel"
+          [ngClass]="{ 'is-invalid': f.submitted && startdate.invalid }"
         />
       </div>
       <div class="col">
@@ -58,9 +63,11 @@
           (blur)="dateValidation()"
           onfocus="(this.type='date')"
           placeholder="End Date"
+          min="2021-04-04"
+          #endDate="ngModel"
           [(ngModel)]="obj.endDate"
+          [ngClass]="{ 'is-invalid': f.submitted && endDate.invalid }"
           required
-          min="2021-04-01"
         />
         <div *ngIf="error.isError" class="alert alert-danger">
           {{ error.errorMessage }}
@@ -79,6 +86,7 @@
           [owlDateTime]="dt1"
           required
           #starttime="ngModel"
+          [ngClass]="{ 'is-invalid': f.submitted && starttime.invalid }"
         />
         <owl-date-time [pickerType]="'timer'" #dt1></owl-date-time>
       </div>
@@ -92,6 +100,8 @@
           [(ngModel)]="obj.endTime"
           [owlDateTimeTrigger]="dt2"
           [owlDateTime]="dt2"
+          #endTime="ngModel"
+          [ngClass]="{ 'is-invalid': f.submitted && endTime.invalid }"
           required
         />
         <owl-date-time [pickerType]="'timer'" #dt2></owl-date-time>
@@ -110,7 +120,7 @@
           style="display: flex; justify-content: space-around; margin-top: 20px"
         >
           <button
-            [ngClass]="{ 'btn-success': days[7] }"
+            [ngClass]="{ 'btn-success': dys.get('EveryDay') }"
             type="button"
             class="btn rounded-pill"
           >
@@ -119,49 +129,49 @@
           <button
             type="button"
             class="btn rounded-pill"
-            [ngClass]="{ 'btn-success': planet.get('Mon') }"
+            [ngClass]="{ 'btn-success': dys.get('Mon') }"
           >
             Mon
           </button>
           <button
             type="button"
             class="btn rounded-pill"
-            [ngClass]="{ 'btn-success': days[2] }"
+            [ngClass]="{ 'btn-success': dys.get('Tue') }"
           >
             Tue
           </button>
           <button
             type="button"
             class="btn rounded-pill"
-            [ngClass]="{ 'btn-success': days[3] }"
+            [ngClass]="{ 'btn-success': dys.get('Wed') }"
           >
             Wed
           </button>
           <button
             type="button"
             class="btn rounded-pill"
-            [ngClass]="{ 'btn-success': days[4] }"
+            [ngClass]="{ 'btn-success': dys.get('Thu') }"
           >
             Thu
           </button>
           <button
             type="button"
             class="btn rounded-pill"
-            [ngClass]="{ 'btn-success': days[5] }"
+            [ngClass]="{ 'btn-success': dys.get('Fri') }"
           >
             Fri
           </button>
           <button
             type="button"
             class="btn rounded-pill"
-            [ngClass]="{ 'btn-success': days[6] }"
+            [ngClass]="{ 'btn-success': dys.get('Sat') }"
           >
             Sat
           </button>
           <button
             type="button"
             class="btn rounded-pill"
-            [ngClass]="{ 'btn-success': days[0] }"
+            [ngClass]="{ 'btn-success': dys.get('Sun') }"
           >
             Sun
           </button>
@@ -181,7 +191,11 @@
             {{ isUpdateMode ? "Update" : "Create" }}
           </button>
 
-          <button class="btn btn-primary rounded-pill" type="reset">
+          <button
+            class="btn btn-primary rounded-pill"
+            type="reset"
+            routerLink="/smartmenu/menu-list"
+          >
             Cancle
           </button>
         </div>
