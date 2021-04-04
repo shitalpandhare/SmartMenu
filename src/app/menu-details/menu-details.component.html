@@ -15,6 +15,8 @@
   id="exampleModal"
   tabindex="-1"
   role="dialog"
+  data-backdrop="static"
+  data-keyboard="false"
   aria-labelledby="exampleModalLabel"
   aria-hidden="true"
 >
@@ -77,10 +79,16 @@
         <div class="row">
           <div class="col-md-6">
             <div>
-              <h6>{{ menuItem.startDate }} To {{ menuItem.endDate }}</h6>
+              <h6>
+                {{ menuItem.startDate | date: "dd/mm/yyyy" }} To
+                {{ menuItem.endDate | date: "dd/mm/yyyy" }}
+              </h6>
             </div>
             <div>
-              <p>{{ menuItem.startTime }} To {{ menuItem.endTime }}</p>
+              <p>
+                {{ menuItem.startTime | date: "shortTime" }} To
+                {{ menuItem.endTime | date: "shortTime" }}
+              </p>
             </div>
           </div>
           <div class="col-md-6">
@@ -90,12 +98,11 @@
           </div>
         </div>
 
-        <!--  -->
-        <div class="modal-footer">
+        <!-- <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">
             Close
           </button>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>

@@ -45,6 +45,7 @@
           [(ngModel)]="obj.startDate"
           required
           min="2021-04-01"
+          #startdate="ngModel"
         />
       </div>
       <div class="col">
@@ -70,56 +71,120 @@
       <div class="col">
         <label for="start-time">Start Time</label>
         <input
-          type="text"
-          onfocus="(this.type='time')"
           name="startTime"
-          id="start-time"
           class="form-control"
-          placeholder="Start Time"
+          placeholder=" Start Time"
           [(ngModel)]="obj.startTime"
+          [owlDateTimeTrigger]="dt1"
+          [owlDateTime]="dt1"
           required
+          #starttime="ngModel"
         />
+        <owl-date-time [pickerType]="'timer'" #dt1></owl-date-time>
       </div>
+
       <div class="col">
         <label for="end-time">End Time</label>
         <input
-          type="text"
-          onfocus="(this.type='time')"
           name="endTime"
-          id="end-time"
           class="form-control"
-          placeholder="End Time"
+          placeholder=" End Time"
           [(ngModel)]="obj.endTime"
+          [owlDateTimeTrigger]="dt2"
+          [owlDateTime]="dt2"
           required
         />
+        <owl-date-time [pickerType]="'timer'" #dt2></owl-date-time>
+        <div
+          *ngIf="error.isError && starttime.touched && starttime.invalid"
+          class="alert alert-danger"
+        >
+          <p>Please select valid date</p>
+        </div>
       </div>
     </div>
 
     <div class="row">
-      <div class="col">
-        <button type="button" class="btn btn-light rounded-pill">
-          EveryDay
-        </button>
-        <button type="button" class="btn btn-light rounded-pill">Mon</button>
-        <button type="button" class="btn btn-light rounded-pill">Tue</button>
-        <button type="button" class="btn btn-light rounded-pill">Wed</button>
-        <button type="button" class="btn btn-light rounded-pill">Thu</button>
-        <button type="button" class="btn btn-light rounded-pill">Fri</button>
-        <button type="button" class="btn btn-light rounded-pill">Sat</button>
-        <button type="button" class="btn btn-light rounded-pill">Sun</button>
+      <div class="col-md-7">
+        <div
+          style="display: flex; justify-content: space-around; margin-top: 20px"
+        >
+          <button
+            [ngClass]="{ 'btn-success': days[7] }"
+            type="button"
+            class="btn rounded-pill"
+          >
+            EveryDay
+          </button>
+          <button
+            type="button"
+            class="btn rounded-pill"
+            [ngClass]="{ 'btn-success': planet.get('Mon') }"
+          >
+            Mon
+          </button>
+          <button
+            type="button"
+            class="btn rounded-pill"
+            [ngClass]="{ 'btn-success': days[2] }"
+          >
+            Tue
+          </button>
+          <button
+            type="button"
+            class="btn rounded-pill"
+            [ngClass]="{ 'btn-success': days[3] }"
+          >
+            Wed
+          </button>
+          <button
+            type="button"
+            class="btn rounded-pill"
+            [ngClass]="{ 'btn-success': days[4] }"
+          >
+            Thu
+          </button>
+          <button
+            type="button"
+            class="btn rounded-pill"
+            [ngClass]="{ 'btn-success': days[5] }"
+          >
+            Fri
+          </button>
+          <button
+            type="button"
+            class="btn rounded-pill"
+            [ngClass]="{ 'btn-success': days[6] }"
+          >
+            Sat
+          </button>
+          <button
+            type="button"
+            class="btn rounded-pill"
+            [ngClass]="{ 'btn-success': days[0] }"
+          >
+            Sun
+          </button>
+        </div>
       </div>
     </div>
 
     <div class="row">
       <div class="col"></div>
       <div class="col">
-        <button class="btn btn-danger rounded-pill" type="submit">
-          {{ isUpdateMode ? "Update" : "Create" }}
-        </button>
+        <div class="createCancleButton">
+          <button
+            class="btn btn-danger rounded-pill"
+            type="submit"
+            style="margin-right: 10px"
+          >
+            {{ isUpdateMode ? "Update" : "Create" }}
+          </button>
 
-        <button class="btn btn-primary rounded-pill" type="reset">
-          Cancle
-        </button>
+          <button class="btn btn-primary rounded-pill" type="reset">
+            Cancle
+          </button>
+        </div>
       </div>
     </div>
   </form>
