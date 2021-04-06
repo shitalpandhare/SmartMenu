@@ -5,9 +5,15 @@
         <fa-icon
           class="fa-lg"
           [icon]="faFilePdf"
-          style="margin-right: 15px"
+          style="cursor: pointer; margin-right: 15px"
+          (click)="downloadPDF()"
         ></fa-icon>
-        <fa-icon class="fa-lg" [icon]="faFileExcel"></fa-icon>
+        <fa-icon
+          class="fa-lg"
+          style="cursor: pointer"
+          [icon]="faFileExcel"
+          (click)="exporter.exportTable('xlsx', { fileName: 'menu-items' })"
+        ></fa-icon>
       </div>
       <form class="form-inline">
         <div class="example-header">
@@ -29,7 +35,14 @@
     <!--  -->
 
     <div class="example-container mat-elevation-z8">
-      <mat-table [dataSource]="dataSource" matSort>
+      <mat-table
+        matTableExporter
+        #exporter="matTableExporter"
+        [hiddenColumns]="[6]"
+        [dataSource]="dataSource"
+        matSort
+        id="tableMenuData"
+      >
         <!-- menuName Column -->
         <ng-container matColumnDef="menuName">
           <mat-header-cell *matHeaderCellDef mat-sort-header>
@@ -116,7 +129,6 @@
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns"> </mat-row>
       </mat-table>
-
       <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
     </div>
 

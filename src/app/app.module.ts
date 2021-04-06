@@ -14,14 +14,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MenuDetailsComponent } from './menu-details/menu-details.component';
-
-import { MatDatepickerModule } from '@angular/material/datepicker';
-
-import {
-  NgxMatDatetimePickerModule,
-  NgxMatNativeDateModule,
-  NgxMatTimepickerModule,
-} from '@angular-material-components/datetime-picker';
+import { MatTableExporterModule } from 'mat-table-exporter';
 
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 
@@ -45,6 +38,7 @@ import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
+    MatTableExporterModule,
   ],
   exports: [MatPaginatorModule, MatSortModule, MatTableModule, MatInputModule],
   providers: [DatePipe],
