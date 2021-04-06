@@ -1,27 +1,15 @@
 import { Injectable, OnInit } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { MenuData } from './menu-data.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MenuService implements OnInit {
-  public menuItems: MenuData[] = [
-    {
-      menuItemId: 1,
-      menuName: 'menu1',
-      menuMenus: 'menu 2',
-      startDate: new Date(),
-      endDate: new Date(),
-      startTime: new Date().toDateString(),
-      endTime: new Date().toDateString(),
-      frequency: 'week days',
-      createdBy: 'Shital',
-      createdOn: new Date(),
-    },
-  ];
+  public menuItems: MenuData[] = [];
 
   updatedMenuItems = new BehaviorSubject<MenuData[]>(this.menuItems);
+  updateModeEvent = new BehaviorSubject<Boolean>(false);
 
   constructor() {}
 

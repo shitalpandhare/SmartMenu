@@ -57,7 +57,10 @@ export class MenuItemComponent implements OnInit {
           this.dys.set(f, true);
         }
         this.isUpdateMode = true;
+        this.menuService.updateModeEvent.next(true);
         this.isValidForm = true;
+      } else {
+        this.menuService.updateModeEvent.next(false);
       }
     });
   }
@@ -72,13 +75,14 @@ export class MenuItemComponent implements OnInit {
         let index = this.menuService.menuItems.length - 1;
         this.id = this.menuService.menuItems[index].menuItemId + 1;
       } else {
-        this.id = 0;
+        this.id = 1;
       }
 
       this.obj.menuItemId = this.id;
       this.obj.createdOn = new Date();
       this.menuService.createMenu(this.obj);
     } else {
+      this.menuService.updateModeEvent.next(true);
       this.isValidForm = true;
       this.menuService.updateMenu(this.id, this.obj);
     }

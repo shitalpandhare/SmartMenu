@@ -42,6 +42,7 @@ export class MenuListComponent implements OnInit {
   constructor(private menuService: MenuService) {}
 
   ngOnInit(): void {
+    this.menuService.updateModeEvent.next(false);
     console.log(new Date().getDay());
     this.menuService.updatedMenuItems.subscribe((res) => {
       this.data = res;
@@ -66,24 +67,7 @@ export class MenuListComponent implements OnInit {
   }
 
   public downloadPDF(): void {
-    // let DATA = this.htmlData.nativeElement;
-    // let doc = new jsPDF('p', 'pt', 'a4');
-
-    // let handleElement = {
-    //   '#editor': function (element, renderer) {
-    //     return true;
-    //   },
-    // };
-
-    // doc.html(DATA, {
-    //   callback: (doc) => {
-    //     // doc.output('dataurlnewwindow');
-    //     doc.save('menu-items.pdf');
-    //   },
-    // });
     const doc = new jsPDF();
-
-    // autoTable(doc, { html: '#tableMenuData' });
     const columns = [
       [
         'Menu Special Name',

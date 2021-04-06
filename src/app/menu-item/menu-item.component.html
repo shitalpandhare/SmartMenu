@@ -48,7 +48,7 @@
           placeholder="Start Date"
           [(ngModel)]="obj.startDate"
           required
-          min="2021-04-01"
+          min="2021-04-06"
           #startdate="ngModel"
           [ngClass]="{ 'is-invalid': f.submitted && startdate.invalid }"
         />
@@ -63,7 +63,7 @@
           (blur)="dateValidation()"
           onfocus="(this.type='date')"
           placeholder="End Date"
-          min="2021-04-04"
+          min="2021-04-06"
           #endDate="ngModel"
           [(ngModel)]="obj.endDate"
           [ngClass]="{ 'is-invalid': f.submitted && endDate.invalid }"

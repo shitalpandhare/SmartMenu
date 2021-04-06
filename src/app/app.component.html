@@ -11,12 +11,24 @@
           >
         </li>
         <li class="nav-item">
-          <a
-            class="nav-link"
-            routerLinkActive="active"
-            [routerLink]="['smartmenu/menu-item']"
-            >New Menu Special</a
-          >
+          <div *ngIf="!isUpdateMode">
+            <a
+              class="nav-link"
+              routerLinkActive="active"
+              [routerLink]="['smartmenu/menu-item']"
+            >
+              New Menu Special</a
+            >
+          </div>
+          <div *ngIf="isUpdateMode">
+            <a
+              class="nav-link"
+              routerLinkActive="active"
+              [routerLink]="['smartmenu/menu-item']"
+            >
+              Update Menu Item</a
+            >
+          </div>
         </li>
       </ul>
       <router-outlet></router-outlet>
